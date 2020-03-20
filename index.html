@@ -1,9 +1,121 @@
+<!doctype html>
 <html>
-    <head>
-        <title>Idea Epica</title>
-    </head>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <body>
-        <h2>questa è l'homepage della mia idea epica</h2>
-    </body>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Pacifico&display=swap" rel="stylesheet">
+
+    <title>Progetto epico!</title>
+
+    <style>
+        .testo{
+            font-size: 32pt;
+        }
+
+        .mess{
+            font-size: 62pt;
+            font-family: 'Pacifico', bold;
+        }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+        <div class="row m-5">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-8 testo text-center hide fade1">C'è una cosa che ti volevo dire...</div>
+            <div class="col-sm-2"></div>
+        </div>
+
+        <div class="row m-5">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-8 testo text-center  hide fade2">Te lo volevo dire da tempo ma...</div>
+            <div class="col-sm-2 hide"></div>
+        </div>
+
+        <div class="row m-5">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-8 testo text-center hide fade3">non sono mai riuscito a trovare il coraggio (ಥ﹏ಥ)</div>
+            <div class="col-sm-2"></div>
+        </div>
+
+        <div class="row m-5">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-10 testo text-center hide mess">B A C I A M I<br>I L<br>C U L O</div>
+            <div class="col-sm-1"></div>
+        </div>
+
+        <div class="row m-5 hide gif">
+            <div class="col-sm-4"><img src="img/thanos.gif"></div>
+            <div class="col-sm-4"><img src="img/thanos.gif"></div>
+            <div class="col-sm-4"><img src="img/thanos.gif"></div>
+        </div>
+        
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+    <script>
+        $(document).ready(function(){
+            $(".hide").hide();
+            
+            var audioElement = document.createElement('audio');
+            audioElement.setAttribute('src', 'audio/bordello.mp3');
+
+            var audioElement2 = document.createElement('audio');
+            audioElement2.setAttribute('src', 'audio/ALI-A_intro.mp3');
+
+
+            audioElement.addEventListener('ended', function() {
+                audioElement2.play();
+            }, false);
+            
+            audioElement.addEventListener("canplay",function(){
+                this.play();
+            });
+              
+            start(1);
+        });
+        
+        function start(conta) {
+            $(".fade" + conta).fadeIn(2500);
+            $(".fade" + conta).delay(2000).fadeOut(1000);   
+
+            conta += 1;
+
+            if(conta > 4) {
+                bordello();
+                return;
+            }
+
+           setTimeout(start, 700, conta);
+        }
+
+        function bordello() {
+            setInterval(cambiaSfondo, 100);
+
+            $(".mess").show();
+            $(".gif").show();
+        }
+
+        function cambiaSfondo() {
+            $("body").css("background-color", getRandomColor);
+        }
+
+        function getRandomColor() {
+            var letters = '0123456789ABCDEF';
+            var color = '#';
+
+            for (var i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+    </script>
+  </body>
 </html>
